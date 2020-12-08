@@ -6,9 +6,39 @@
   removeToken() - удаляет токен (вызвает подписчиков на изменеия)
   getToken() - возващяет токен
  */
+const TOKEN_LS_KEY = '__token__';
 
 class TokenService {
-  // Напиши свой код здесь
+
+	constructor() {
+		this.cbs = [];
+	}
+
+	// hasToken() {
+	// 	return !!this.getToken();
+	// }
+
+	setToken(token) {
+		localStorage.setItem(TOKEN_LS_KEY, token);
+	}
+
+	getToken() {
+		return localStorage.getItem(TOKEN_LS_KEY)
+	}
+
+	removeToken() {
+		localStorage.removeItem(TOKEN_LS_KEY);
+		this.fireChangeEvent(null);
+	}
+
+	fireChangeEvent(token) {
+		this.cbs.forEach(cb => cb(!!token));
+	}
+
+	subscribe(cb) {
+		this.cbs.push(cb);
+	}
+
 }
 
 window.TokenService = TokenService;

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 /**
  * @name Full-sum
  * @task
@@ -11,24 +11,32 @@ const a = 9;
 
 
 function fullSum(...args) {
-  // Напиши свой код здесь
-  console.log('LOOOOG', args, a);
+	let res = 0;
+	for (let i = 0; i < arguments.length; i++) {
+		if(Number.isInteger(arguments[i]) && !isNaN(arguments[i]) && arguments[i] !==undefined){
+			res += arguments[i]
+		}else{
+			throw 'Wrong Argument Type'
+		}
+	}
+	return res
 }
 
 window.fullSum = fullSum;
+export default fullSum
 
 
-class Component extends React.component {
-  constructor() {
-    super();
-
-    this.state = {
-      config: false,
-    };
-  }
-
-  render() {
-    return <div>ddd</div>
-  }
-}
-export default Component;
+// class Component extends React.component {
+//   constructor() {
+//     super();
+//
+//     this.state = {
+//       config: false,
+//     };
+//   }
+//
+//   render() {
+//     return <div>ddd</div>
+//   }
+// }
+// export default Component;
